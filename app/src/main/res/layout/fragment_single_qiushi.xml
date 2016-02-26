@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/single_qiushi"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/qiushi_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="8dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rlSingleQiushi">
+
+            <ImageView
+                android:id="@+id/qiushi_profile"
+                android:contentDescription="@string/qiushi_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp" />
+            <TextView
+                android:id="@+id/qiushi_people_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@+id/qiushi_profile"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="3dp"
+                android:textColor="@color/textPrimary"
+                android:layout_marginTop="2dp"
+                android:paddingTop="15dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp"
+                android:id="@+id/llQiuhiPopular"
+                android:paddingTop="5dp"
+                android:layout_marginRight="5dp">
+
+                <ImageView
+                    android:contentDescription="@string/qiushi_summary"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/qiushi_popular"
+                    android:src="@drawable/qiushi_hot" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/qiushi_popular_desc"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="10sp"
+                    android:text="@string/qiushi_hot" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/qiushi_brief"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/qiushi_profile"
+                android:textSize="15sp"
+                android:layout_margin="5dp"
+                android:textColor="@color/textPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/qiushi_summary"
+                android:id="@+id/qiushi_summary"
+                android:textColor="@color/textSecondary"
+                android:textSize="10sp"
+                android:layout_margin="5dp"
+                android:layout_below="@+id/qiushi_brief" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_below="@+id/qiushi_summary"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/rlQiushiSummary">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/qiushi_good"
+                    android:src="@drawable/qiushi_good"
+                    android:contentDescription="@string/qiushi_good"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:padding="2dp" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/qiushi_bad"
+                    android:src="@drawable/qiushi_bad"
+                    android:contentDescription="@string/qiushi_bad"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="2dp"
+                    android:layout_toRightOf="@+id/qiushi_good" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/qiushi_comment"
+                    android:src="@drawable/qiushi_comment"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="2dp"
+                    android:contentDescription="@string/qiushi_comment"
+                    android:layout_toRightOf="@+id/qiushi_bad" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/qiushi_more"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/qiushi_more"
+                    android:contentDescription="@string/qiushi_more"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

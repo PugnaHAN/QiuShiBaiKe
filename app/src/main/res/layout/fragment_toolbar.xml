@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:contentDescription="@string/qiushi_desc"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/qiushiImageBtn"
+        android:background="@color/colorPrimaryDark"
+        android:scaleType="fitXY"
+        android:src="@drawable/default_no_content_grey_dark"
+        android:padding="10dp" />
+
+    <ImageButton
+        android:contentDescription="@string/qiushi_desc"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/campusImageBtn"
+        android:background="@color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/campus"
+        android:padding="8dp" />
+
+    <ImageButton
+        android:contentDescription="@string/qiushi_desc"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/chatImageBtn"
+        android:background="@color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/chat"
+        android:padding="7dp" />
+
+</LinearLayout>

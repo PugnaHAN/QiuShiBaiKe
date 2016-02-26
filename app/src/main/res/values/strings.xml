@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">QiuShiBaiKe</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="qiushi_desc">Qiushi</string>
+    <string name="qiushi_profile">Profile</string>
+    <string name="qiushi_summary">好笑 0·评论 0</string>
+    <string name="qiushi_hot">热门</string>
+    <string name="qiushi_fresh">新鲜</string>
+    <string name="qiushi_good">好笑</string>
+    <string name="qiushi_bad">不好笑</string>
+    <string name="qiushi_comment">评论</string>
+    <string name="qiushi_more">更多</string>
+</resources>
