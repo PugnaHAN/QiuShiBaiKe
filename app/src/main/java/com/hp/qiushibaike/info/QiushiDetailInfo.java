@@ -36,7 +36,7 @@ public class QiushiDetailInfo {
 
     public QiushiDetailInfo(){
         mId = 100001;
-        mStatus = QiushiStatus.UNKNOWN;
+        mStatus = QiushiStatus.PASS;
         mPublishedTime = System.currentTimeMillis();
         mPassTime = System.currentTimeMillis();
         mQiushiGood = 2200;
