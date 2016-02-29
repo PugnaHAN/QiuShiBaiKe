@@ -14,25 +14,22 @@ public class QiushiBrief {
     private static final int DEFAULT_USER_PROFILE_MALE = R.drawable.default_profile_male;
     private static final int DEFAULT_USER_PROFILE_FEMALE = R.drawable.default_profile_female;
 
-    private UserInfo mUserInfo;
     private QiushiDetailInfo mQiushiDetailInfo;
 
     public QiushiBrief(){
-        mUserInfo = new UserInfo();
         mQiushiDetailInfo = new QiushiDetailInfo();
     }
 
-    public QiushiBrief(UserInfo userInfo, QiushiDetailInfo qiushiDetailInfo){
-        mUserInfo = userInfo;
+    public QiushiBrief(QiushiDetailInfo qiushiDetailInfo){
         mQiushiDetailInfo = qiushiDetailInfo;
     }
 
     public UserInfo getUserInfo() {
-        return mUserInfo;
+        return getQiushiDetailInfo().getAuthor();
     }
 
     public void setUserInfo(UserInfo userInfo) {
-        mUserInfo = userInfo;
+        getQiushiDetailInfo().setAuthor(userInfo);
     }
 
     public QiushiDetailInfo getQiushiDetailInfo() {

@@ -65,6 +65,14 @@ public class UserInfo {
         mQiushis = qiushis;
     }
 
+    public Gender getGender() {
+        return mGender;
+    }
+
+    public void setGender(Gender gender) {
+        mGender = gender;
+    }
+
     public int getAge() {
         return mAge;
     }

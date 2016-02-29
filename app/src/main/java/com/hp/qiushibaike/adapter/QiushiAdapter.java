@@ -36,7 +36,7 @@ public class QiushiAdapter extends RecyclerView.Adapter<QiushiHolder> {
     @Override
     public void onBindViewHolder(QiushiHolder qiushiHolder, int i){
         QiushiBrief qb = mQiushiBriefsList.get(i);
-        qiushiHolder.setUserProfile(qb.getUserInfo().getProfilePath());
+        qiushiHolder.setUserProfile(qb.getUserInfo().getProfilePath(), qb.getUserInfo().getGender());
         qiushiHolder.setUserName(qb.getUserInfo().getName());
 
         QiushiDetailInfo.PopularStatus popularStatus = qb.getQiushiDetailInfo().getPopularStatus();

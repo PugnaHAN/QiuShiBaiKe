@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.hp.qiushibaike.R;
 import com.hp.qiushibaike.adapter.QiushiAdapter;
+import com.hp.qiushibaike.info.UserInfo;
 import com.hp.qiushibaike.item.QiushiBrief;
 import com.hp.qiushibaike.utils.LogUtils;
 
@@ -50,7 +51,11 @@ public class QiuShiListFragment extends Fragment {
     private void initData(){
         mQiushiBriefs = new ArrayList<>();
         mQiushiBriefs.add(new QiushiBrief());
-        mQiushiBriefs.add(new QiushiBrief());
+        QiushiBrief qiushiBrief = new QiushiBrief();
+        qiushiBrief.getUserInfo().setGender(UserInfo.Gender.FEMALE);
+        qiushiBrief.getUserInfo().setName("Saber");
+        qiushiBrief.getQiushiDetailInfo().setPassTime(60*1000*60*2);
+        mQiushiBriefs.add(qiushiBrief);
         mQiushiBriefs.add(new QiushiBrief());
     }
 }

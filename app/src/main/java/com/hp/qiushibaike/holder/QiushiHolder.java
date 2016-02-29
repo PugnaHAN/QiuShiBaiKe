@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.hp.qiushibaike.R;
 import com.hp.qiushibaike.info.QiushiDetailInfo;
+import com.hp.qiushibaike.info.UserInfo;
 import com.hp.qiushibaike.utils.LogUtils;
 
 import java.net.URI;
@@ -54,12 +55,14 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
         mUserProfile.setImageResource(resourceId);
     }
 
-    public void setUserProfile(String path){
+    public void setUserProfile(String path, UserInfo.Gender gender){
         if(path != null) {
             Uri uri = Uri.parse(path);
             mUserProfile.setImageURI(uri);
         } else {
-            setUserProfile(R.drawable.default_profile_male);
+            setUserProfile(gender == UserInfo.Gender.MALE?
+                    R.drawable.default_profile_male:
+                    R.drawable.default_profile_female);
         }
     }
 

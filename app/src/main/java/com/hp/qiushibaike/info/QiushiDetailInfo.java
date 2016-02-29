@@ -35,6 +35,7 @@ public class QiushiDetailInfo {
     private ArrayList<Comment> mComments;
 
     public QiushiDetailInfo(){
+        mAuthor = new UserInfo();
         mId = 100001;
         mStatus = QiushiStatus.PASS;
         mPublishedTime = System.currentTimeMillis();
