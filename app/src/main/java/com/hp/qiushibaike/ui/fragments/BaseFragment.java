@@ -1,4 +1,4 @@
-package com.hp.qiushibaike.fragments;
+package com.hp.qiushibaike.ui.fragments;
 
 import android.app.Fragment;
 
