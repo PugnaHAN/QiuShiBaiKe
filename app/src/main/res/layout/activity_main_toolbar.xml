@@ -21,7 +21,7 @@
             android:id="@+id/fragmentToolBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.hp.qiushibaike.fragments.ToolBarFragment"
+            android:name="com.hp.qiushibaike.ui.fragments.ToolBarFragment"
             tools:layout="@layout/fragment_toolbar" />
 
 

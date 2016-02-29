@@ -1,21 +1,17 @@
 package com.hp.qiushibaike;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.hp.qiushibaike.ui.fragments.QiuShiListFragment;
 import com.hp.qiushibaike.utils.LogUtils;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = LogUtils.makeLogTag(MainActivity.class);
-
-    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +19,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FragmentManager fm = getFragmentManager();
+        QiuShiListFragment fragment = (QiuShiListFragment) fm.findFragmentById(R.id.fragmentContainer);
+
+        if(fragment == null) {
+            fragment = new QiuShiListFragment();
+            fm.beginTransaction()
+                    .add(R.id.fragmentContainer, fragment)
+                    .commit();
+        }
     }
 
     @Override
