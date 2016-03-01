@@ -28,7 +28,7 @@
 
     <style name="AppTheme.Tab" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">?attr/colorPrimary</item>
-        <item name="tabIndicatorHeight">5dp</item>
+        <item name="tabIndicatorHeight">4dp</item>
         <item name="tabSelectedTextColor">?attr/colorPrimary</item>
     </style>
 

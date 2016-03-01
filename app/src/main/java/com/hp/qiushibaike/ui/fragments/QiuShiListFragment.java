@@ -1,14 +1,7 @@
 package com.hp.qiushibaike.ui.fragments;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.os.Handler;
 
-import com.hp.qiushibaike.R;
 import com.hp.qiushibaike.adapter.QiushiAdapter;
 import com.hp.qiushibaike.info.UserInfo;
 import com.hp.qiushibaike.item.QiushiBrief;
@@ -19,35 +12,12 @@ import java.util.ArrayList;
 /**
  * Created by zhangjuh on 2016/2/26.
  */
-public class QiuShiListFragment extends Fragment {
+public class QiuShiListFragment extends BaseListFragment {
     private static final String TAG = LogUtils.makeLogTag(QiuShiListFragment.class);
 
-    private RecyclerView mQiushiRecyclerView;
-    private ArrayList<QiushiBrief> mQiushiBriefs;
-    private QiushiAdapter mAdapter;
-
+    // TODO: use the network task to replace them
     @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        initData();
-        mAdapter = new QiushiAdapter(mQiushiBriefs);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent,
-                             Bundle savedInstanceState ){
-        View view = inflater.inflate(R.layout.content_main, parent, false);
-        mQiushiRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_main);
-        mQiushiRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        mQiushiRecyclerView.setLayoutManager(llm);
-        mQiushiRecyclerView.setAdapter(mAdapter);
-
-        return view;
-    }
-
-    private void initData(){
+    protected void getData(){
         mQiushiBriefs = new ArrayList<>();
         mQiushiBriefs.add(new QiushiBrief());
         QiushiBrief qiushiBrief = new QiushiBrief();
@@ -56,5 +26,21 @@ public class QiuShiListFragment extends Fragment {
         qiushiBrief.getQiushiDetailInfo().setPassTime(60*1000*60*2);
         mQiushiBriefs.add(qiushiBrief);
         mQiushiBriefs.add(new QiushiBrief());
+    }
+
+    @Override
+    protected void updateData(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                QiushiBrief qiushi = new QiushiBrief();
+                qiushi.getUserInfo().setName("天王盖地虎");
+                qiushi.getQiushiDetailInfo().setQiushiContent("从前有座山");
+                qiushi.getUserInfo().setGender(UserInfo.Gender.FEMALE);
+                mQiushiBriefs.add(qiushi);
+                mQiushiRecyclerView.setAdapter(new QiushiAdapter(mQiushiBriefs));
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }, 2000);
     }
 }

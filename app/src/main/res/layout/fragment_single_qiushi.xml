@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:id="@+id/rlSingleQiushi">
 
-        <ImageView
+        <com.hp.qiushibaike.ui.customview.RoundImageView
             android:id="@+id/qiushi_profile"
             android:contentDescription="@string/qiushi_profile"
             android:layout_width="50dp"
