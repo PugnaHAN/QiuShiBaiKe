@@ -80,7 +80,7 @@
             android:text="@string/qiushi_summary"
             android:id="@+id/qiushi_summary"
             android:textColor="@color/textSecondary"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:layout_margin="5dp"
             android:layout_below="@+id/qiushi_brief" />
 

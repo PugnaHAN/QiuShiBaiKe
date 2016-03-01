@@ -1,7 +1,12 @@
 package com.hp.qiushibaike;
 
-import android.app.FragmentManager;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -10,8 +15,18 @@ import android.view.MenuItem;
 import com.hp.qiushibaike.ui.fragments.QiuShiListFragment;
 import com.hp.qiushibaike.utils.LogUtils;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = LogUtils.makeLogTag(MainActivity.class);
+
+    private static final String[] sTabTitles = {
+        "专享", "视频", "纯文", "纯图", "精华"
+    };
+    private TabLayout mTitleTabLayout;
+    private ViewPager mContentViewPager;
+
+    ArrayList<Fragment> mFragments = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +35,31 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FragmentManager fm = getFragmentManager();
-        QiuShiListFragment fragment = (QiuShiListFragment) fm.findFragmentById(R.id.fragmentContainer);
+        initFragments();
+        FragmentManager fm = getSupportFragmentManager();
 
-        if(fragment == null) {
-            fragment = new QiuShiListFragment();
-            fm.beginTransaction()
-                    .add(R.id.fragmentContainer, fragment)
-                    .commit();
+        mContentViewPager = (ViewPager) findViewById(R.id.content_view_pager);
+        mContentViewPager.setAdapter(new FragmentPagerAdapter(fm) {
+            @Override
+            public Fragment getItem(int position) {
+                return mFragments.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return 5;
+            }
+        });
+
+        mTitleTabLayout = (TabLayout) findViewById(R.id.title_tab);
+        mTitleTabLayout.setupWithViewPager(mContentViewPager);
+        mTitleTabLayout.setTabMode(TabLayout.MODE_FIXED);
+
+        for(int i = 0; i < mTitleTabLayout.getTabCount(); i++){
+            TabLayout.Tab tab = mTitleTabLayout.getTabAt(i);
+            if(tab != null){
+                tab.setText(sTabTitles[i]);
+            }
         }
     }
 
@@ -51,5 +83,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initFragments(){
+        for(int i = 0; i < 5; i++){
+            mFragments.add(new QiuShiListFragment());
+        }
     }
 }
