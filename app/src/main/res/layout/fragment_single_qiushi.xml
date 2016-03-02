@@ -19,40 +19,41 @@
         <com.hp.qiushibaike.ui.customview.RoundImageView
             android:id="@+id/qiushi_profile"
             android:contentDescription="@string/qiushi_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:scaleType="fitXY"
+            android:padding="3dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="2dp" />
+
         <TextView
             android:id="@+id/qiushi_people_name"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_toRightOf="@+id/qiushi_profile"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
             android:textStyle="bold"
             android:textSize="15sp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="3dp"
             android:textColor="@color/textPrimary"
             android:layout_marginTop="2dp"
-            android:paddingTop="15dp" />
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/qiushi_profile"/>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="45dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="15dp"
             android:id="@+id/llQiuhiPopular"
-            android:paddingTop="5dp"
+            android:gravity="center"
             android:layout_marginRight="5dp">
 
             <ImageView
                 android:contentDescription="@string/qiushi_summary"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
+                android:scaleType="fitXY"
                 android:id="@+id/qiushi_popular"
-                android:src="@drawable/qiushi_hot" />
+                android:src="@drawable/ic_rss_hot" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,7 +61,8 @@
                 android:id="@+id/qiushi_popular_desc"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="5dp"
-                android:textSize="10sp"
+                android:gravity="top"
+                android:textSize="12sp"
                 android:text="@string/qiushi_hot" />
 
         </LinearLayout>
@@ -86,7 +88,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="40dp"
             android:layout_below="@+id/qiushi_summary"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
@@ -94,44 +96,41 @@
             android:id="@+id/rlQiushiSummary">
 
             <ImageView
-                android:layout_width="25dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:id="@+id/qiushi_good"
-                android:src="@drawable/qiushi_good"
+                android:src="@drawable/operation_support"
                 android:contentDescription="@string/qiushi_good"
                 android:layout_marginRight="10dp"
-                android:layout_marginLeft="5dp"
-                android:padding="2dp" />
+                android:layout_marginLeft="5dp"/>
 
             <ImageView
-                android:layout_width="25dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:id="@+id/qiushi_bad"
-                android:src="@drawable/qiushi_bad"
+                android:src="@drawable/operation_unsupport"
                 android:contentDescription="@string/qiushi_bad"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:padding="2dp"
                 android:layout_toRightOf="@+id/qiushi_good" />
 
             <ImageView
-                android:layout_width="25dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:id="@+id/qiushi_comment"
-                android:src="@drawable/qiushi_comment"
+                android:src="@drawable/operation_comments"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:padding="2dp"
                 android:contentDescription="@string/qiushi_comment"
                 android:layout_toRightOf="@+id/qiushi_bad" />
 
             <ImageView
-                android:layout_width="25dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:id="@+id/qiushi_more"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="5dp"
-                android:src="@drawable/qiushi_more"
+                android:src="@drawable/operation_more"
                 android:contentDescription="@string/qiushi_more"/>
         </RelativeLayout>
 

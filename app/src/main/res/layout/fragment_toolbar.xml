@@ -11,7 +11,7 @@
         android:id="@+id/qiushiImageBtn"
         android:background="@color/colorPrimaryDark"
         android:scaleType="fitXY"
-        android:src="@drawable/default_no_content_grey_dark"
+        android:src="@drawable/ic_qiushi_select"
         android:padding="10dp" />
 
     <ImageButton
@@ -21,7 +21,7 @@
         android:id="@+id/campusImageBtn"
         android:background="@color/transparent"
         android:scaleType="fitXY"
-        android:src="@drawable/campus"
+        android:src="@drawable/ic_nearby_normal"
         android:padding="8dp" />
 
     <ImageButton
@@ -31,7 +31,7 @@
         android:id="@+id/chatImageBtn"
         android:background="@color/transparent"
         android:scaleType="fitXY"
-        android:src="@drawable/chat"
+        android:src="@drawable/ic_message_normal"
         android:padding="7dp" />
 
 </LinearLayout>

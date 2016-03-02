@@ -33,24 +33,34 @@ public class ToolBarFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mQiushiBtn.setBackgroundResource(R.color.colorPrimaryDark);
+                mQiushiBtn.setImageResource(R.drawable.ic_qiushi_select);
                 mLocationBtn.setBackgroundResource(R.color.transparent);
+                mLocationBtn.setImageResource(R.drawable.ic_nearby_normal);
                 mChatBtn.setBackgroundResource(R.color.transparent);
+                mChatBtn.setImageResource(R.drawable.ic_message_normal);
             }
         });
         mLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mQiushiBtn.setBackgroundResource(R.color.transparent);
+                mQiushiBtn.setImageResource(R.drawable.ic_qiushi_normal);
                 mLocationBtn.setBackgroundResource(R.color.colorPrimaryDark);
+                mLocationBtn.setImageResource(R.drawable.ic_nearby_select);
                 mChatBtn.setBackgroundResource(R.color.transparent);
+                mChatBtn.setImageResource(R.drawable.ic_message_normal);
             }
         });
         mChatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mQiushiBtn.setBackgroundResource(R.color.transparent);
+                mQiushiBtn.setImageResource(R.drawable.ic_qiushi_normal);
                 mLocationBtn.setBackgroundResource(R.color.transparent);
+                mLocationBtn.setImageResource(R.drawable.ic_nearby_normal);
                 mChatBtn.setBackgroundResource(R.color.colorPrimaryDark);
+                mChatBtn.setImageResource(R.drawable.ic_message_normal);
+                mChatBtn.setImageResource(R.drawable.ic_message_select);
             }
         });
         return v;

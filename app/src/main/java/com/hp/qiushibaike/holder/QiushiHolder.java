@@ -73,10 +73,10 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
     public void setPopularRate(QiushiDetailInfo.PopularStatus status){
         switch (status){
             case HOT:
-                mPopularRate.setImageResource(R.drawable.qiushi_hot);
+                mPopularRate.setImageResource(R.drawable.ic_rss_hot);
                 break;
             case FRESH:
-                mPopularRate.setImageResource(R.drawable.qiushi_fresh);
+                mPopularRate.setImageResource(R.drawable.ic_rss_fresh);
                 break;
             case NONE:
                 mPopularRate.setVisibility(View.GONE);

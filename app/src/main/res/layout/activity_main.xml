@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context="com.hp.qiushibaike.MainActivity">
 
-    <include layout="@layout/activity_main_toolbar"/>
+    <include layout="@layout/main_toolbar"/>
 
     <LinearLayout
         android:orientation="vertical"
