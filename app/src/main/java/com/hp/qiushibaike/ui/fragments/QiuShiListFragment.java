@@ -23,7 +23,7 @@ public class QiuShiListFragment extends BaseListFragment {
         QiushiBrief qiushiBrief = new QiushiBrief();
         qiushiBrief.getUserInfo().setGender(UserInfo.Gender.FEMALE);
         qiushiBrief.getUserInfo().setName("Saber");
-        qiushiBrief.getQiushiDetailInfo().setPassTime(60*1000*60*2);
+        qiushiBrief.getQiushiDetailInfo().setCreateTime(60 * 1000 * 60 * 2);
         mQiushiBriefs.add(qiushiBrief);
         mQiushiBriefs.add(new QiushiBrief());
     }

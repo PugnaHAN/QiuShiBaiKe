@@ -70,21 +70,21 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
         mUserName.setText(userName);
     }
 
-    public void setPopularRate(QiushiDetailInfo.PopularStatus status){
-        switch (status){
+    public void setPopularRate(QiushiDetailInfo.QiushiType type){
+        switch (type){
             case HOT:
                 mPopularRate.setImageResource(R.drawable.ic_rss_hot);
                 break;
             case FRESH:
                 mPopularRate.setImageResource(R.drawable.ic_rss_fresh);
                 break;
-            case NONE:
+            case PROMOTE:
                 mPopularRate.setVisibility(View.GONE);
                 break;
         }
     }
 
-    public void setPopularDesc(QiushiDetailInfo.PopularStatus status){
+    public void setPopularDesc(QiushiDetailInfo.QiushiType status){
         switch (status){
             case HOT:
                 mPopularDesc.setText("热门");
@@ -92,7 +92,7 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
             case FRESH:
                 mPopularDesc.setText("新鲜");
                 break;
-            case NONE:
+            case PROMOTE:
                 mPopularDesc.setVisibility(View.GONE);
                 break;
         }

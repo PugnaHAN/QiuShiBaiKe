@@ -11,13 +11,13 @@ public enum QiushiStatus {
     /*
      * 糗事通过
      */
-    PASS,
+    PUBLISH,
     /*
      * 糗事正在审核
      */
-    ON_PROGRESS,
+    ACTIVE,
     /*
      * 糗事未通过
      */
-    FAILED
+    BONDED
 }

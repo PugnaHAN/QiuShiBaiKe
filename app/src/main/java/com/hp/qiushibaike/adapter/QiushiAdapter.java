@@ -1,7 +1,6 @@
 package com.hp.qiushibaike.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,13 +38,13 @@ public class QiushiAdapter extends RecyclerView.Adapter<QiushiHolder> {
         qiushiHolder.setUserProfile(qb.getUserInfo().getProfilePath(), qb.getUserInfo().getGender());
         qiushiHolder.setUserName(qb.getUserInfo().getName());
 
-        QiushiDetailInfo.PopularStatus popularStatus = qb.getQiushiDetailInfo().getPopularStatus();
+        QiushiDetailInfo.QiushiType popularStatus = qb.getQiushiDetailInfo().getQiushiType();
         qiushiHolder.setPopularRate(popularStatus);
         qiushiHolder.setPopularDesc(popularStatus);
 
         qiushiHolder.setQiushiContent(qb.getQiushiDetailInfo().getQiushiCoententBrief());
         int goodNo = qb.getQiushiDetailInfo().getQiushiZan();
-        int commentNo = qb.getQiushiDetailInfo().getComments().size();
+        int commentNo = qb.getQiushiDetailInfo().getCommentCount();
         qiushiHolder.setQiushiSummary(goodNo, commentNo);
     }
 

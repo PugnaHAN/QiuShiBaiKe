@@ -1,6 +1,5 @@
 package com.hp.qiushibaike;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,16 +8,26 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.hp.qiushibaike.ui.fragments.QiuShiListFragment;
 import com.hp.qiushibaike.utils.LogUtils;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = LogUtils.makeLogTag(MainActivity.class);
+
+    private static final String QIUBAI_URL = "http://www.qiushibaike.com/";
 
     private static final String[] sTabTitles = {
         "专享", "视频", "纯文", "纯图", "精华"
@@ -61,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 tab.setText(sTabTitles[i]);
             }
         }
+
+        httpTaskGet();
     }
 
     @Override
@@ -89,5 +100,39 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < 5; i++){
             mFragments.add(new QiuShiListFragment());
         }
+    }
+
+    private void httpTaskGet(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+//        StringRequest stringRequest = new StringRequest(QIUBAI_URL,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        Log.d(TAG, response);
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e(TAG, error.getMessage(), error);
+//            }
+//        });
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://m2.qiushibaike.com/article/list/day", null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, error.getMessage(), error);
+            }
+        });
+
+
+        // queue.add(stringRequest);
+        queue.add(jsonObjectRequest);
     }
 }
