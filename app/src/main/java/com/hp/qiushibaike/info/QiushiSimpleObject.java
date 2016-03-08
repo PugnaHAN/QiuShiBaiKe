@@ -1,89 +1,97 @@
 package com.hp.qiushibaike.info;
 
+import com.hp.qiushibaike.info.enums.Format;
+import com.hp.qiushibaike.info.enums.Status;
+import com.hp.qiushibaike.info.enums.Type;
 import com.hp.qiushibaike.utils.IdUtils;
 import com.hp.qiushibaike.utils.LogUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 /**
- * Created by zhangjuh on 2016/2/29.
+ * Created by zhangjuh on 2016/3/8.
  */
-public class QiushiDetailInfo {
-    private static final String TAG = LogUtils.makeLogTag(QiushiDetailInfo.class);
+public abstract class QiushiSimpleObject {
+    private static final String TAG = LogUtils.makeLogTag(QiushiSimpleObject.class);
 
     public static final int MAX_CONTENT_LENGTH = 256;
 
-    private static final int ONE_MINUTE = 60 * 1000;
-    private static final int ONE_HOUR = 60 * ONE_MINUTE;
+    protected static final int ONE_MINUTE = 60 * 1000;
+    protected static final int ONE_HOUR = 60 * ONE_MINUTE;
 
-    public static final String JSON_FORMAT = "format";
-    public static final String JSON_IMAGE_FILE = "image";
-    public static final String JSON_PUBLISHED_TIME = "published_at";
-    public static final String JSON_TAGS = "tag";
-    public static final String JSON_AUTHOR = "user";
-    public static final String JSON_IMAGE_SIZE = "image_size";
-    public static final String JSON_ID = "id";
-    public static final String JSON_VOTE = "votes";
-    public static final String JSON_CREATE_TIME = "created_at";
-    public static final String JSON_CONTENT = "content";
-    public static final String JSON_STATE = "state";
-    public static final String JSON_COMMENT_COUNT = "comments_count";
-    public static final String JSON_ALLOW_COMMENT = "allow_comment";
-    public static final String JSON_SHARE_COUNT = "share_count";
-    public static final String JSON_LOOP = "loop";
+    protected static final String JSON_FORMAT = "format";
+    protected static final String JSON_IMAGE_FILE = "image";
+    protected static final String JSON_PUBLISHED_AT = "published_at";
+    protected static final String JSON_TAGS = "tag";
+    protected static final String JSON_AUTHOR = "user";
+    protected static final String JSON_IMAGE_SIZE = "image_size";
+    protected static final String JSON_ID = "id";
+    protected static final String JSON_VOTE = "votes";
+    protected static final String JSON_CREATE_AT = "created_at";
+    protected static final String JSON_CONTENT = "content";
+    protected static final String JSON_STATE = "state";
+    protected static final String JSON_COMMENT_COUNT = "comments_count";
+    protected static final String JSON_ALLOW_COMMENT = "allow_comment";
+    protected static final String JSON_SHARE_COUNT = "share_count";
+
+    public static final int S = 0;
+    public static final int M = 1;
 
     // 糗事类型 - 图片，文字，视频等
-    private Format mFormat;
+    protected Format mFormat;
     // 图片文件
-    private String mImageFile;
+    protected String mImageFile;
     // 发表时间
-    private long mPublishedTime;
+    protected long mPublishedTime;
     // 糗事标签
-    private ArrayList<String> mTags;
+    protected ArrayList<String> mTags;
     // 作者信息
-    private UserInfo mAuthor;
+    protected UserInfo mAuthor;
     // 图像大小 - Json中包括S和M两种
-    private ArrayList<ImageSize> mImageSizes;
+    protected ArrayList<ImageSize> mImageSizes;
     // 糗事ID
-    private long mId;
+    protected long mId;
     // 糗事状态
-    private QiushiStatus mStatus;
+    protected Status mStatus;
     // 糗事总结
-    private Vote mVote;
+    protected Vote mVote;
     // 通过时间
-    private long mCreateTime;
+    protected long mCreateTime;
     // 糗事内容
-    private String mQiushiContent;
+    protected String mQiushiContent;
     // 评论数目
-    private int mCommentCount;
+    protected int mCommentCount;
     // 是否可评
-    private boolean mIsAllowComment;
+    protected boolean mIsAllowComment;
     // 共享数目
-    private int mShareCount;
+    protected int mShareCount;
     // 糗事热度
-    private QiushiType mQiushiType;
-    // 审阅次数
-    private int mLoop;
+    protected Type mQiushiType;
 
-    public QiushiDetailInfo(){
-        mFormat = Format.WORLD;
+    public QiushiSimpleObject(){
+        mFormat = Format.WORD;
         mImageFile = null;
         mPublishedTime = System.currentTimeMillis();
         mTags = new ArrayList<>();
         mAuthor = new UserInfo();
         mImageSizes = new ArrayList<>();
         mId = IdUtils.generateId();
-        mStatus = QiushiStatus.PUBLISH;
+        mStatus = Status.PUBLISH;
         mCreateTime = System.currentTimeMillis();
         mVote = new Vote(3000, 455);
         mQiushiContent = "测试糗事";
         mCommentCount = 0;
         mIsAllowComment = true;
         mShareCount = 0;
-        mQiushiType = QiushiType.HOT;
+        mQiushiType = Type.HOT;
+    }
+
+    public QiushiSimpleObject(JSONObject json) throws JSONException{
+
     }
 
     public Format getFormat() {
@@ -150,11 +158,11 @@ public class QiushiDetailInfo {
         }
     }
 
-    public QiushiStatus getStatus() {
+    public Status getStatus() {
         return mStatus;
     }
 
-    public void setStatus(QiushiStatus status) {
+    public void setStatus(Status status) {
         mStatus = status;
     }
 
@@ -214,11 +222,11 @@ public class QiushiDetailInfo {
         mShareCount = shareCount;
     }
 
-    public QiushiType getQiushiType() {
+    public Type getQiushiType() {
         return mQiushiType;
     }
 
-    public void setQiushiType(QiushiType qiushiType) {
+    public void setQiushiType(Type qiushiType) {
         mQiushiType = qiushiType;
     }
 
@@ -226,50 +234,7 @@ public class QiushiDetailInfo {
         return mVote.up - mVote.down;
     }
 
-    public int getLoop() {
-        return mLoop;
-    }
-
-    public void setLoop(int loop) {
-        mLoop = loop;
-    }
-
-    public enum Format{
-        WORLD,
-        IMAGE,
-        VIDEO,
-        UKNOWN
-    }
-
-    public String formatToString(Format format){
-        String formatStr;
-        switch (format){
-            case WORLD:
-                formatStr = "world";
-                break;
-            case IMAGE:
-                formatStr = "image";
-                break;
-            case VIDEO:
-                formatStr = "vedio";
-                break;
-            default:
-                formatStr = "unkown";
-                break;
-        }
-        return formatStr;
-    }
-
-    public String formatToString(QiushiStatus status){
-        String formatStr;
-        switch (status){
-            case :
-                formatStr = "publish";
-
-        }
-    }
-
-    private class ImageSize{
+    protected class ImageSize{
         public int width = 0;
         public int height = 0;
         public int size = 0;
@@ -285,9 +250,17 @@ public class QiushiDetailInfo {
             height = h;
             size = s;
         }
+
+        public JSONArray toJSON() throws JSONException{
+            JSONArray json = new JSONArray();
+            json.put(width);
+            json.put(height);
+            json.put(size);
+            return json;
+        }
     }
 
-    private class Vote{
+    protected class Vote{
         private final String JSON_DOWN = "down";
         private final String JSON_UP = "up";
 
@@ -312,35 +285,8 @@ public class QiushiDetailInfo {
         }
     }
 
-    public enum QiushiType{
-        HOT,
-        PROMOTE,
-        FRESH
-    }
+    public abstract JSONObject toJSON() throws JSONException;
 
-    private JSONObject toJSON() throws JSONException{
-        JSONObject json = new JSONObject();
-        json.put(JSON_FORMAT, formatToString(mFormat));
-        json.put(JSON_IMAGE_FILE, mImageFile);
-        json.put(JSON_PUBLISHED_TIME, mPublishedTime);
-        json.put(JSON_TAGS, getJSON(mTags));
-        json.put(JSON_AUTHOR, mAuthor.toJSON());
-        json.put(JSON_IMAGE_SIZE, getJSON(mImageSizes));
-        json.put(JSON_ID, mId);
-        json.put(JSON_VOTE, mVote.toJSON());
-        json.put(JSON_CREATE_TIME, mCreateTime);
-        json.put(JSON_CONTENT, mQiushiContent);
-        json.put(JSON_STATE, mStatus);
-
-
-        return json;
-    }
-
-    public static final String JSON_CREATE_TIME = "created_at";
-    public static final String JSON_CONTENT = "content";
-    public static final String JSON_STATE = "state";
-    public static final String JSON_COMMENT_COUNT = "comments_count";
-    public static final String JSON_ALLOW_COMMENT = "allow_comment";
-    public static final String JSON_SHARE_COUNT = "share_count";
-    public static final String JSON_LOOP = "loop";
+    protected abstract JSONObject getJSON(ArrayList<ImageSize> imageSizes);
 }
+

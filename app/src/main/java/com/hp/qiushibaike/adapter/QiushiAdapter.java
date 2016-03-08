@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.hp.qiushibaike.R;
 import com.hp.qiushibaike.holder.QiushiHolder;
-import com.hp.qiushibaike.info.QiushiDetailInfo;
+import com.hp.qiushibaike.info.QiushiText;
 import com.hp.qiushibaike.item.QiushiBrief;
 import com.hp.qiushibaike.utils.LogUtils;
 
@@ -38,13 +38,13 @@ public class QiushiAdapter extends RecyclerView.Adapter<QiushiHolder> {
         qiushiHolder.setUserProfile(qb.getUserInfo().getProfilePath(), qb.getUserInfo().getGender());
         qiushiHolder.setUserName(qb.getUserInfo().getName());
 
-        QiushiDetailInfo.QiushiType popularStatus = qb.getQiushiDetailInfo().getQiushiType();
+        QiushiText.QiushiType popularStatus = qb.getQiushiText().getQiushiType();
         qiushiHolder.setPopularRate(popularStatus);
         qiushiHolder.setPopularDesc(popularStatus);
 
-        qiushiHolder.setQiushiContent(qb.getQiushiDetailInfo().getQiushiCoententBrief());
-        int goodNo = qb.getQiushiDetailInfo().getQiushiZan();
-        int commentNo = qb.getQiushiDetailInfo().getCommentCount();
+        qiushiHolder.setQiushiContent(qb.getQiushiText().getQiushiCoententBrief());
+        int goodNo = qb.getQiushiText().getQiushiZan();
+        int commentNo = qb.getQiushiText().getCommentCount();
         qiushiHolder.setQiushiSummary(goodNo, commentNo);
     }
 

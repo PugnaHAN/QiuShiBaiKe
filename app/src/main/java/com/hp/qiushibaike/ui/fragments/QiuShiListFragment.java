@@ -23,7 +23,7 @@ public class QiuShiListFragment extends BaseListFragment {
         QiushiBrief qiushiBrief = new QiushiBrief();
         qiushiBrief.getUserInfo().setGender(UserInfo.Gender.FEMALE);
         qiushiBrief.getUserInfo().setName("Saber");
-        qiushiBrief.getQiushiDetailInfo().setCreateTime(60 * 1000 * 60 * 2);
+        qiushiBrief.getQiushiText().setCreateTime(60 * 1000 * 60 * 2);
         mQiushiBriefs.add(qiushiBrief);
         mQiushiBriefs.add(new QiushiBrief());
     }
@@ -35,7 +35,7 @@ public class QiuShiListFragment extends BaseListFragment {
             public void run() {
                 QiushiBrief qiushi = new QiushiBrief();
                 qiushi.getUserInfo().setName("天王盖地虎");
-                qiushi.getQiushiDetailInfo().setQiushiContent("从前有座山");
+                qiushi.getQiushiText().setQiushiContent("从前有座山");
                 qiushi.getUserInfo().setGender(UserInfo.Gender.FEMALE);
                 mQiushiBriefs.add(qiushi);
                 mQiushiRecyclerView.setAdapter(new QiushiAdapter(mQiushiBriefs));

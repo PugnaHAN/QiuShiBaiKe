@@ -7,11 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hp.qiushibaike.R;
-import com.hp.qiushibaike.info.QiushiDetailInfo;
+import com.hp.qiushibaike.info.QiushiText;
 import com.hp.qiushibaike.info.UserInfo;
 import com.hp.qiushibaike.utils.LogUtils;
-
-import java.net.URI;
 
 /**
  * Created by zhangjuh on 2016/2/29.
@@ -70,7 +68,7 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
         mUserName.setText(userName);
     }
 
-    public void setPopularRate(QiushiDetailInfo.QiushiType type){
+    public void setPopularRate(QiushiText.QiushiType type){
         switch (type){
             case HOT:
                 mPopularRate.setImageResource(R.drawable.ic_rss_hot);
@@ -84,7 +82,7 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    public void setPopularDesc(QiushiDetailInfo.QiushiType status){
+    public void setPopularDesc(QiushiText.QiushiType status){
         switch (status){
             case HOT:
                 mPopularDesc.setText("热门");

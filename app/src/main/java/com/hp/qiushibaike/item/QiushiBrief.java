@@ -1,7 +1,7 @@
 package com.hp.qiushibaike.item;
 
 import com.hp.qiushibaike.R;
-import com.hp.qiushibaike.info.QiushiDetailInfo;
+import com.hp.qiushibaike.info.QiushiText;
 import com.hp.qiushibaike.info.UserInfo;
 import com.hp.qiushibaike.utils.LogUtils;
 
@@ -14,29 +14,29 @@ public class QiushiBrief {
     private static final int DEFAULT_USER_PROFILE_MALE = R.drawable.default_profile_male;
     private static final int DEFAULT_USER_PROFILE_FEMALE = R.drawable.default_profile_female;
 
-    private QiushiDetailInfo mQiushiDetailInfo;
+    private QiushiText mQiushiText;
 
     public QiushiBrief(){
-        mQiushiDetailInfo = new QiushiDetailInfo();
+        mQiushiText = new QiushiText();
     }
 
-    public QiushiBrief(QiushiDetailInfo qiushiDetailInfo){
-        mQiushiDetailInfo = qiushiDetailInfo;
+    public QiushiBrief(QiushiText qiushiText){
+        mQiushiText = qiushiText;
     }
 
     public UserInfo getUserInfo() {
-        return getQiushiDetailInfo().getAuthor();
+        return getQiushiText().getAuthor();
     }
 
     public void setUserInfo(UserInfo userInfo) {
-        getQiushiDetailInfo().setAuthor(userInfo);
+        getQiushiText().setAuthor(userInfo);
     }
 
-    public QiushiDetailInfo getQiushiDetailInfo() {
-        return mQiushiDetailInfo;
+    public QiushiText getQiushiText() {
+        return mQiushiText;
     }
 
-    public void setQiushiDetailInfo(QiushiDetailInfo qiushiDetailInfo) {
-        mQiushiDetailInfo = qiushiDetailInfo;
+    public void setQiushiText(QiushiText qiushiText) {
+        mQiushiText = qiushiText;
     }
 }

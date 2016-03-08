@@ -1,25 +1,35 @@
 package com.hp.qiushibaike.info;
 
+import com.hp.qiushibaike.info.enums.Gender;
 import com.hp.qiushibaike.utils.LogUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 /**
  * Created by zhangjuh on 2016/2/29.
  */
-public class UserInfo {
+public class UserInfo extends UserBasicObject {
     private static final String TAG = LogUtils.makeLogTag(UserInfo.class);
+
+    public static final String JSON_AVATAR_UPDATED_AT = "avatar_updated_at";
+    public static final String JSON_UID = "uid";
+    public static final String JSON_LAST_VISITED_AT = "last_visited_at";
+    public static final String JSON_CREATED_AT = "created_at";
+    public static final String JSON_STATE = "state";
+    public static final String JSON_LAST_DEVICE = "last_device";
+    public static final String JSON_ROLE = "role";
+    public static final String JSON_LOGIN = "login";
+    public static final String JSON_ID = "id";
+    public static final String JSON_ICON = "icon";
+
 
     private String mProfilePath;
     private String mName;
 
-    private ArrayList<QiushiDetailInfo> mQiushis;
-
-    public enum Gender{
-        MALE,
-        FEMALE,
-        UNKNOWN
-    }
+    private ArrayList<QiushiText> mQiushis;
     private Gender mGender;
 
     private int mAge;
@@ -41,6 +51,10 @@ public class UserInfo {
         mLocation = "上海";
     }
 
+    public UserInfo(JSONObject json) throws JSONException{
+
+    }
+
     public String getProfilePath() {
         return mProfilePath;
     }
@@ -57,11 +71,11 @@ public class UserInfo {
         mName = name;
     }
 
-    public ArrayList<QiushiDetailInfo> getQiushis() {
+    public ArrayList<QiushiText> getQiushis() {
         return mQiushis;
     }
 
-    public void setQiushis(ArrayList<QiushiDetailInfo> qiushis) {
+    public void setQiushis(ArrayList<QiushiText> qiushis) {
         mQiushis = qiushis;
     }
 
@@ -111,5 +125,10 @@ public class UserInfo {
 
     public void setLocation(String location) {
         mLocation = location;
+    }
+
+    @Override
+    public JSONObject toJSON() throws JSONException{
+        return new JSONObject();
     }
 }
