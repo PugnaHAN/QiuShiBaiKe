@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.hp.qiushibaike.R;
 import com.hp.qiushibaike.adapter.QiushiAdapter;
-import com.hp.qiushibaike.item.QiushiBrief;
+import com.hp.qiushibaike.item.QiushiItem;
 import com.hp.qiushibaike.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -26,14 +26,14 @@ public abstract class BaseListFragment extends Fragment {
     protected RecyclerView mQiushiRecyclerView;
 
     protected QiushiAdapter mAdapter;
-    protected ArrayList<QiushiBrief> mQiushiBriefs;
+    protected ArrayList<QiushiItem> mQiushiItems;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         getData();
-        mAdapter = new QiushiAdapter(mQiushiBriefs);
+        mAdapter = new QiushiAdapter(mQiushiItems);
     }
 
     @Override

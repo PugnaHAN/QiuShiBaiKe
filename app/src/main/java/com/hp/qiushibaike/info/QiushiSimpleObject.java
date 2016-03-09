@@ -1,7 +1,7 @@
 package com.hp.qiushibaike.info;
 
 import com.hp.qiushibaike.info.enums.Format;
-import com.hp.qiushibaike.info.enums.Status;
+import com.hp.qiushibaike.info.enums.State;
 import com.hp.qiushibaike.info.enums.Type;
 import com.hp.qiushibaike.utils.IdUtils;
 import com.hp.qiushibaike.utils.LogUtils;
@@ -37,9 +37,12 @@ public abstract class QiushiSimpleObject {
     protected static final String JSON_COMMENT_COUNT = "comments_count";
     protected static final String JSON_ALLOW_COMMENT = "allow_comment";
     protected static final String JSON_SHARE_COUNT = "share_count";
+    protected static final String JSON_TYPE = "type";
+    protected static final String JSON_IS_MINE = "is_mine";
 
-    public static final int S = 0;
-    public static final int M = 1;
+
+    protected static final String JSON_S = "s";
+    protected static final String JSON_M = "m";
 
     // 糗事类型 - 图片，文字，视频等
     protected Format mFormat;
@@ -56,7 +59,7 @@ public abstract class QiushiSimpleObject {
     // 糗事ID
     protected long mId;
     // 糗事状态
-    protected Status mStatus;
+    protected State mState;
     // 糗事总结
     protected Vote mVote;
     // 通过时间
@@ -71,6 +74,8 @@ public abstract class QiushiSimpleObject {
     protected int mShareCount;
     // 糗事热度
     protected Type mQiushiType;
+    // 自己发表？
+    protected boolean mIsMine;
 
     public QiushiSimpleObject(){
         mFormat = Format.WORD;
@@ -80,7 +85,7 @@ public abstract class QiushiSimpleObject {
         mAuthor = new UserInfo();
         mImageSizes = new ArrayList<>();
         mId = IdUtils.generateId();
-        mStatus = Status.PUBLISH;
+        mState = State.PUBLISH;
         mCreateTime = System.currentTimeMillis();
         mVote = new Vote(3000, 455);
         mQiushiContent = "测试糗事";
@@ -88,10 +93,36 @@ public abstract class QiushiSimpleObject {
         mIsAllowComment = true;
         mShareCount = 0;
         mQiushiType = Type.HOT;
+        mIsMine = false;
     }
 
     public QiushiSimpleObject(JSONObject json) throws JSONException{
-
+        mFormat = mFormat.getByCode(json.getString(JSON_FORMAT));
+        mImageFile = json.getString(JSON_IMAGE_FILE);
+        mPublishedTime = json.getLong(JSON_PUBLISHED_AT);
+        JSONArray jsonArray = json.getJSONArray(JSON_TAGS);
+        mTags.clear();
+        for(int i = 0; i < jsonArray.length(); i++){
+            mTags.add(jsonArray.getString(i));
+        }
+        mAuthor = new UserInfo(json.getJSONObject(JSON_AUTHOR));
+        mImageSizes.clear();
+        JSONObject jsonObject = json.getJSONObject(JSON_IMAGE_SIZE);
+        if(jsonObject != null) {
+            mImageSizes.add(new ImageSize(jsonObject.getJSONArray(JSON_S)));
+            mImageSizes.add(new ImageSize(jsonObject.getJSONArray(JSON_M)));
+        } else {
+            mImageSizes = null;
+        }
+        mId = json.getLong(JSON_ID);
+        mState = mState.getByCode(json.getString(JSON_STATE));
+        mCreateTime = json.getLong(JSON_CREATE_AT);
+        mVote = new Vote(json.getJSONObject(JSON_VOTE));
+        mQiushiContent = json.getString(JSON_CONTENT);
+        mIsAllowComment = json.getBoolean(JSON_ALLOW_COMMENT);
+        mShareCount = json.getInt(JSON_SHARE_COUNT);
+        mQiushiType = mQiushiType.getByCode(json.getString(JSON_TYPE));
+        mIsMine = json.has(JSON_IS_MINE) && json.getBoolean(JSON_IS_MINE);
     }
 
     public Format getFormat() {
@@ -158,12 +189,12 @@ public abstract class QiushiSimpleObject {
         }
     }
 
-    public Status getStatus() {
-        return mStatus;
+    public State getState() {
+        return mState;
     }
 
-    public void setStatus(Status status) {
-        mStatus = status;
+    public void setState(State state) {
+        mState = state;
     }
 
     public long getCreateTime() {
@@ -251,6 +282,18 @@ public abstract class QiushiSimpleObject {
             size = s;
         }
 
+        public ImageSize(JSONArray json) throws JSONException{
+            if(json != null){
+                width = json.getInt(0);
+                height = json.getInt(1);
+                size = json.getInt(2);
+            } else {
+                width = 0;
+                height = 0;
+                size = 0;
+            }
+        }
+
         public JSONArray toJSON() throws JSONException{
             JSONArray json = new JSONArray();
             json.put(width);
@@ -277,6 +320,11 @@ public abstract class QiushiSimpleObject {
             down = d;
         }
 
+        public Vote(JSONObject json) throws JSONException{
+            down = json.getInt(JSON_DOWN);
+            up = json.getInt(JSON_UP);
+        }
+
         public JSONObject toJSON() throws JSONException{
             JSONObject json = new JSONObject();
             json.put(JSON_DOWN, down);
@@ -285,8 +333,25 @@ public abstract class QiushiSimpleObject {
         }
     }
 
-    public abstract JSONObject toJSON() throws JSONException;
+    public JSONObject toJSON() throws JSONException{
+        JSONObject json = new JSONObject();
+        json.put(JSON_FORMAT, mFormat);
+        json.put(JSON_IMAGE_FILE, mImageFile);
+        json.put(JSON_PUBLISHED_AT, mPublishedTime);
+        json.put(JSON_TAGS, new JSONArray(mTags.toArray()));
+        json.put(JSON_AUTHOR, mAuthor.toJSON());
+        json.put(JSON_IMAGE_SIZE, getJSON(mImageSizes));
+        json.put(JSON_ID, mId);
+        json.put(JSON_VOTE, mVote.toJSON());
+        json.put(JSON_CREATE_AT, mCreateTime);
+        json.put(JSON_CONTENT, mQiushiContent);
+        json.put(JSON_STATE, mState);
+        json.put(JSON_COMMENT_COUNT, mCommentCount);
+        json.put(JSON_ALLOW_COMMENT, mIsAllowComment);
+        json.put(JSON_SHARE_COUNT, mShareCount);
+        return json;
+    }
 
-    protected abstract JSONObject getJSON(ArrayList<ImageSize> imageSizes);
+    protected abstract JSONObject getJSON(ArrayList<ImageSize> imageSizes) throws JSONException;
 }
 

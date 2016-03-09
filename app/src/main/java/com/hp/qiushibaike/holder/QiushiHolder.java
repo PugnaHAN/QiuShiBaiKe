@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.hp.qiushibaike.R;
 import com.hp.qiushibaike.info.QiushiText;
 import com.hp.qiushibaike.info.UserInfo;
+import com.hp.qiushibaike.info.enums.Gender;
+import com.hp.qiushibaike.info.enums.Type;
 import com.hp.qiushibaike.utils.LogUtils;
 
 /**
@@ -53,12 +55,12 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
         mUserProfile.setImageResource(resourceId);
     }
 
-    public void setUserProfile(String path, UserInfo.Gender gender){
+    public void setUserProfile(String path, Gender gender){
         if(path != null) {
             Uri uri = Uri.parse(path);
             mUserProfile.setImageURI(uri);
         } else {
-            setUserProfile(gender == UserInfo.Gender.MALE?
+            setUserProfile(gender == Gender.MALE?
                     R.drawable.default_profile_male:
                     R.drawable.default_profile_female);
         }
@@ -68,7 +70,7 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
         mUserName.setText(userName);
     }
 
-    public void setPopularRate(QiushiText.QiushiType type){
+    public void setPopularRate(Type type){
         switch (type){
             case HOT:
                 mPopularRate.setImageResource(R.drawable.ic_rss_hot);
@@ -82,7 +84,7 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    public void setPopularDesc(QiushiText.QiushiType status){
+    public void setPopularDesc(Type status){
         switch (status){
             case HOT:
                 mPopularDesc.setText("热门");

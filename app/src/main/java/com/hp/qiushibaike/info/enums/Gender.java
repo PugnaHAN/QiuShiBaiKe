@@ -8,6 +8,7 @@ import java.util.HashMap;
 public enum Gender implements CodableEnum {
     MALE("M"),
     FEMALE("F"),
+    UNKNOWN("U"),
     NONE("");
 
     private String gender;

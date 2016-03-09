@@ -36,6 +36,13 @@ public class UserBasicObject {
         mLogin = login;
     }
 
+    public UserBasicObject(JSONObject json) throws JSONException{
+        mUid = json.getLong(JSON_UID);
+        mIcon = json.getString(JSON_ICON);
+        mCreateTime = json.getLong(JSON_CREATED_AT);
+        mLogin = json.getString(JSON_LOGIN);
+    }
+
     public JSONObject toJSON() throws JSONException{
         JSONObject json = new JSONObject();
         json.put(JSON_UID, mUid);
@@ -43,5 +50,37 @@ public class UserBasicObject {
         json.put(JSON_CREATED_AT, mCreateTime);
         json.put(JSON_LOGIN, mLogin);
         return json;
+    }
+
+    public long getUid() {
+        return mUid;
+    }
+
+    public void setUid(long uid) {
+        mUid = uid;
+    }
+
+    public String getIcon() {
+        return mIcon;
+    }
+
+    public void setIcon(String icon) {
+        mIcon = icon;
+    }
+
+    public long getCreateTime() {
+        return mCreateTime;
+    }
+
+    public void setCreateTime(long createTime) {
+        mCreateTime = createTime;
+    }
+
+    public String getLogin() {
+        return mLogin;
+    }
+
+    public void setLogin(String login) {
+        mLogin = login;
     }
 }

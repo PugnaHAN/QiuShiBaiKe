@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 
 import com.hp.qiushibaike.R;
 import com.hp.qiushibaike.holder.QiushiHolder;
-import com.hp.qiushibaike.info.QiushiText;
-import com.hp.qiushibaike.item.QiushiBrief;
+import com.hp.qiushibaike.info.enums.Type;
+import com.hp.qiushibaike.item.QiushiItem;
 import com.hp.qiushibaike.utils.LogUtils;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by zhangjuh on 2016/2/29.
@@ -19,26 +20,28 @@ import java.util.ArrayList;
 public class QiushiAdapter extends RecyclerView.Adapter<QiushiHolder> {
     private static final String TAG = LogUtils.makeLogTag(QiushiAdapter.class);
 
-    private ArrayList<QiushiBrief> mQiushiBriefsList;
+    private ArrayList<QiushiItem> mQiushiItemList;
 
-    public QiushiAdapter(ArrayList<QiushiBrief> qiushiBriefs){
-        mQiushiBriefsList = qiushiBriefs;
+    public QiushiAdapter(ArrayList<QiushiItem> qiushiItems){
+        mQiushiItemList = qiushiItems;
     }
 
     @Override
     public int getItemCount(){
-        int count =  mQiushiBriefsList.size();
+        int count =  mQiushiItemList.size();
         // Log.d(TAG, "size is " + count);
         return count;
     }
 
     @Override
     public void onBindViewHolder(QiushiHolder qiushiHolder, int i){
-        QiushiBrief qb = mQiushiBriefsList.get(i);
-        qiushiHolder.setUserProfile(qb.getUserInfo().getProfilePath(), qb.getUserInfo().getGender());
-        qiushiHolder.setUserName(qb.getUserInfo().getName());
+        QiushiItem qb = mQiushiItemList.get(i);
+        Random random = new Random();
+        qiushiHolder.setUserProfile(random.nextInt(10)%2 == 1? R.drawable.default_profile_male:
+                                    R.drawable.default_profile_female);
+        qiushiHolder.setUserName(qb.getUserInfo().getLogin());
 
-        QiushiText.QiushiType popularStatus = qb.getQiushiText().getQiushiType();
+        Type popularStatus = qb.getQiushiText().getQiushiType();
         qiushiHolder.setPopularRate(popularStatus);
         qiushiHolder.setPopularDesc(popularStatus);
 

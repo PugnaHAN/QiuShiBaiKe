@@ -10,23 +10,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by zhangjuh on 2016/2/29.
+ * Created by zhangjuh on 2016/3/9.
  */
-public class QiushiText extends QiushiSimpleObject{
-    private static final String TAG = LogUtils.makeLogTag(QiushiText.class);
+public class QiushiImage extends QiushiSimpleObject {
+    private static final String TAG = LogUtils.makeLogTag(QiushiImage.class);
 
-    public QiushiText(){
-        super();
-    }
-
-    public QiushiText(JSONObject json) throws JSONException{
-        super(json);
-    }
-
-    @Override
-    public JSONObject toJSON() throws JSONException{
+    public JSONObject toJSON() throws JSONException {
         JSONObject json = new JSONObject();
-        json.put(JSON_FORMAT, Format.WORD);
+        json.put(JSON_FORMAT, Format.IMAGE);
         json.put(JSON_IMAGE_FILE, null);
         json.put(JSON_PUBLISHED_AT, mPublishedTime);
         json.put(JSON_TAGS, new JSONArray(mTags.toArray()));
@@ -45,6 +36,20 @@ public class QiushiText extends QiushiSimpleObject{
 
     @Override
     protected JSONObject getJSON(ArrayList<ImageSize> imageSizes) throws JSONException{
-        return null;
+        JSONObject json = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+
+        jsonArray.put(imageSizes.get(0).width);
+        jsonArray.put(imageSizes.get(0).height);
+        jsonArray.put(imageSizes.get(0).size);
+        json.put(JSON_S, jsonArray);
+
+        jsonArray = new JSONArray();
+        jsonArray.put(imageSizes.get(0).width);
+        jsonArray.put(imageSizes.get(0).height);
+        jsonArray.put(imageSizes.get(0).size);
+        json.put(JSON_M, jsonArray);
+
+        return json;
     }
 }

@@ -5,22 +5,26 @@ import com.hp.qiushibaike.info.QiushiText;
 import com.hp.qiushibaike.info.UserInfo;
 import com.hp.qiushibaike.utils.LogUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by zhangjuh on 2016/2/29.
  */
-public class QiushiBrief {
-    private static final String TAG = LogUtils.makeLogTag(QiushiBrief.class);
-
-    private static final int DEFAULT_USER_PROFILE_MALE = R.drawable.default_profile_male;
-    private static final int DEFAULT_USER_PROFILE_FEMALE = R.drawable.default_profile_female;
+public class QiushiItem {
+    private static final String TAG = LogUtils.makeLogTag(QiushiItem.class);
 
     private QiushiText mQiushiText;
 
-    public QiushiBrief(){
+    public QiushiItem(){
         mQiushiText = new QiushiText();
     }
 
-    public QiushiBrief(QiushiText qiushiText){
+    public QiushiItem(JSONObject json) throws JSONException{
+        mQiushiText = new QiushiText(json);
+    }
+
+    public QiushiItem(QiushiText qiushiText){
         mQiushiText = qiushiText;
     }
 
