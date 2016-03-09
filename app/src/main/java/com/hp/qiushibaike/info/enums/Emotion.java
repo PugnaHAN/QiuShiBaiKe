@@ -26,4 +26,8 @@ public enum Emotion implements CodableEnum{
     public String toString(){
         return emotion;
     }
+
+    public static Emotion decodeString(String s){
+        return (Emotion)CodableEnumHelper.getByCode(s, values());
+    }
 }

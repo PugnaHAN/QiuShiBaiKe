@@ -26,4 +26,8 @@ public enum Format implements CodableEnum{
     public String toString(){
         return format;
     }
+
+    public static Format decodeString(String s){
+        return (Format)CodableEnumHelper.getByCode(s, values());
+    }
 }

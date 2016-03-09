@@ -26,4 +26,8 @@ public enum Gender implements CodableEnum {
     public String toString(){
         return gender;
     }
+
+    public static Gender decodeString(String s){
+        return (Gender)CodableEnumHelper.getByCode(s, values());
+    }
 }

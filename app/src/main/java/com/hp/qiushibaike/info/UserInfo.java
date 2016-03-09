@@ -36,9 +36,10 @@ public class UserInfo extends UserBasicObject {
         mId = IdUtils.generateId();
     }
     public UserInfo(JSONObject json) throws JSONException{
+        super(json);
         mAvatarUpdatedAt = json.getLong(JSON_AVATAR_UPDATED_AT);
         mLastVisitedAt = json.getLong(JSON_LAST_VISITED_AT);
-        mState = mState.getByCode(json.getString(JSON_STATE));
+        mState = State.decodeString(json.getString(JSON_STATE));
         mLastDevice = json.getString(JSON_LAST_DEVICE);
         if(json.has(JSON_ROLE)){
             mRole = json.getString(JSON_ROLE);

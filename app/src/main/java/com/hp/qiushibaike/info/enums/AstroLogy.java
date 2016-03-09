@@ -32,4 +32,8 @@ public enum AstroLogy implements CodableEnum{
     public String toString(){
         return astrology;
     }
+
+    public static AstroLogy decodeString(String s){
+        return (AstroLogy)CodableEnumHelper.getByCode(s, values());
+    }
 }

@@ -26,7 +26,7 @@ public class UserBasicObject {
         mUid = IdUtils.generateId();
         mIcon = null;
         mCreateTime = System.currentTimeMillis();
-        mLogin = "Test";
+        mLogin = "匿名用户";
     }
 
     public UserBasicObject(long uid, String icon, long createTime, String login){

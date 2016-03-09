@@ -24,4 +24,8 @@ public enum RelationShip implements CodableEnum{
     public String toString(){
         return relationship;
     }
+
+    public static RelationShip decodeString(String s){
+        return (RelationShip)CodableEnumHelper.getByCode(s, values());
+    }
 }

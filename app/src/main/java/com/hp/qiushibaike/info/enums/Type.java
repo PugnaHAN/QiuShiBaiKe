@@ -26,4 +26,8 @@ public enum Type implements CodableEnum {
     public String toString(){
         return type;
     }
+
+    public static Type decodeString(String s){
+        return (Type)CodableEnumHelper.getByCode(s, values());
+    }
 }

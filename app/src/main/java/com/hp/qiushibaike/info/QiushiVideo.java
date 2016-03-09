@@ -39,6 +39,7 @@ public class QiushiVideo extends QiushiSimpleObject {
 
     public QiushiVideo(JSONObject json) throws JSONException{
         super(json);
+        mImageSizes = null;
         mHighUrl = json.getString(JSON_HIGH_URL);
         mLowUrl = json.getString(JSON_LOW_URL);
         mPicUrl = json.getString(JSON_PIC_URL);
@@ -49,6 +50,7 @@ public class QiushiVideo extends QiushiSimpleObject {
     @Override
     public JSONObject toJSON() throws JSONException {
         JSONObject json = super.toJSON();
+        json.put(JSON_IMAGE_SIZE, null);
         json.put(JSON_HIGH_URL, mHighUrl);
         json.put(JSON_PIC_SIZE, mPicSize.toJSON());
         json.put(JSON_PIC_URL, mPicUrl);

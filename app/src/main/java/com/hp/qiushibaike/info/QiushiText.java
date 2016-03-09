@@ -21,26 +21,7 @@ public class QiushiText extends QiushiSimpleObject{
 
     public QiushiText(JSONObject json) throws JSONException{
         super(json);
-    }
-
-    @Override
-    public JSONObject toJSON() throws JSONException{
-        JSONObject json = new JSONObject();
-        json.put(JSON_FORMAT, Format.WORD);
-        json.put(JSON_IMAGE_FILE, null);
-        json.put(JSON_PUBLISHED_AT, mPublishedTime);
-        json.put(JSON_TAGS, new JSONArray(mTags.toArray()));
-        json.put(JSON_AUTHOR, mAuthor.toJSON());
-        json.put(JSON_IMAGE_SIZE, getJSON(mImageSizes));
-        json.put(JSON_ID, mId);
-        json.put(JSON_VOTE, mVote.toJSON());
-        json.put(JSON_CREATE_AT, mCreateTime);
-        json.put(JSON_CONTENT, mQiushiContent);
-        json.put(JSON_STATE, mState);
-        json.put(JSON_COMMENT_COUNT, mCommentCount);
-        json.put(JSON_ALLOW_COMMENT, mIsAllowComment);
-        json.put(JSON_SHARE_COUNT, mShareCount);
-        return json;
+        mImageSizes = null;
     }
 
     @Override

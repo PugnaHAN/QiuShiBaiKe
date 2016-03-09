@@ -36,4 +36,8 @@ public enum State implements CodableEnum {
     public String toString(){
         return status;
     }
+
+    public static State decodeString(String s){
+        return (State)CodableEnumHelper.getByCode(s, values());
+    }
 }

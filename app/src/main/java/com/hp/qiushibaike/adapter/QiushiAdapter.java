@@ -37,9 +37,13 @@ public class QiushiAdapter extends RecyclerView.Adapter<QiushiHolder> {
     public void onBindViewHolder(QiushiHolder qiushiHolder, int i){
         QiushiItem qb = mQiushiItemList.get(i);
         Random random = new Random();
-        qiushiHolder.setUserProfile(random.nextInt(10)%2 == 1? R.drawable.default_profile_male:
-                                    R.drawable.default_profile_female);
-        qiushiHolder.setUserName(qb.getUserInfo().getLogin());
+        qiushiHolder.setUserProfile(random.nextInt(10) % 2 == 1 ? R.drawable.default_profile_male :
+                R.drawable.default_profile_female);
+        if(qb.getUserInfo() != null) {
+            qiushiHolder.setUserName(qb.getUserInfo().getLogin());
+        } else {
+            qiushiHolder.setUserName("匿名用户");
+        }
 
         Type popularStatus = qb.getQiushiText().getQiushiType();
         qiushiHolder.setPopularRate(popularStatus);

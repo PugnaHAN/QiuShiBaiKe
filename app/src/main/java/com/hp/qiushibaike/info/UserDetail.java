@@ -75,11 +75,11 @@ public class UserDetail extends UserBasicObject {
     }
 
     public UserDetail(JSONObject json) throws JSONException{
-        mEmotion = mEmotion.getByCode(json.getString(JSON_EMOTION));
+        mEmotion = Emotion.decodeString(json.getString(JSON_EMOTION));
         mHomeTown = json.getString(JSON_HOMETOWN);
         mHaunt = json.getString(JSON_HAUNT);
         mQbAge = json.getInt(JSON_QB_AGE);
-        mAstroLogy = mAstroLogy.getByCode(json.getString(JSON_ASTROLOGY));
+        mAstroLogy = AstroLogy.decodeString(json.getString(JSON_ASTROLOGY));
         mMobileBrand = json.getString(JSON_MOBILE_BRAND);
         mSmileCount = json.getInt(JSON_SMILE_COUNT);
         mBigCover = json.getString(JSON_BIG_COVER);
@@ -87,10 +87,10 @@ public class UserDetail extends UserBasicObject {
         mLocation = json.getString(JSON_LOCATION);
         mHobby = json.getString(JSON_HOBBY);
         mBg = json.getString(JSON_BG);
-        mRelationShip = mRelationShip.getByCode(json.getString(JSON_RELATIONSHIP));
+        mRelationShip = RelationShip.decodeString(json.getString(JSON_RELATIONSHIP));
         mIntroduce = json.getString(JSON_INTRODUCE);
         mJob = json.getString(JSON_JOB);
-        mGender = mGender.getByCode(json.getString(JSON_GENDER));
+        mGender = Gender.decodeString(json.getString(JSON_GENDER));
         mSignature = json.getString(JSON_SIGNATURE);
         mAge = json.getInt(JSON_AGE);
     }
