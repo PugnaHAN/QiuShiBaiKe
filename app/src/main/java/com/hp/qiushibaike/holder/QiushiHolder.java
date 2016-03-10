@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
 import com.hp.qiushibaike.R;
 import com.hp.qiushibaike.info.QiushiText;
 import com.hp.qiushibaike.info.UserInfo;
