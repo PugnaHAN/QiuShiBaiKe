@@ -103,7 +103,7 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
     }
 
     public void setQiushiSummary(int goodNo, int commentNo){
-        String summary = "好笑 " + goodNo + "·评论 " + commentNo;
+        String summary = "好笑 " + goodNo + " · 评论 " + commentNo;
         mQiushiSummary.setText(summary);
     }
 }

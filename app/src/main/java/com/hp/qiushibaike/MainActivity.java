@@ -70,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 tab.setText(sTabTitles[i]);
             }
         }
-
-        httpTaskGet();
     }
 
     @Override
@@ -100,39 +98,5 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < 5; i++){
             mFragments.add(new QiuShiListFragment());
         }
-    }
-
-    private void httpTaskGet(){
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-//        StringRequest stringRequest = new StringRequest(QIUBAI_URL,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        Log.d(TAG, response);
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e(TAG, error.getMessage(), error);
-//            }
-//        });
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://m2.qiushibaike.com/article/list/day", null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, error.getMessage(), error);
-            }
-        });
-
-
-        // queue.add(stringRequest);
-        queue.add(jsonObjectRequest);
     }
 }

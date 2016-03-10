@@ -118,6 +118,7 @@ public abstract class QiushiSimpleObject {
         mQiushiType = json.has(JSON_TYPE)? Type.decodeString(json.getString(JSON_TYPE)) :
                 Type.NONE;
         mIsMine = json.has(JSON_IS_MINE) && json.getBoolean(JSON_IS_MINE);
+        mCommentCount = json.getInt(JSON_COMMENT_COUNT);
     }
 
     public Format getFormat() {

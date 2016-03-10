@@ -38,17 +38,21 @@ public class QiuShiListFragment extends BaseListFragment {
 
     @Override
     protected void updateData(){
-        new Handler().postDelayed(new Runnable() {
+        new Handler().post(new Runnable() {
             @Override
             public void run() {
-                getQiushiItems(mCurrentPage++);
+                mCurrentPage++;
+                Log.d(TAG, "current page is " + mCurrentPage);
+                getQiushiItems(mCurrentPage);
+                mQiushiRecyclerView.setAdapter(new QiushiAdapter(mQiushiItems));
+                mSwipeRefreshLayout.setRefreshing(false);
             }
-        }, 2000);
+        });
     }
 
     private void getQiushiItems(int page){
         RequestQueue queue =  Volley.newRequestQueue(getContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constants.TEXT, null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(getTextUrl(page), null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -56,7 +60,7 @@ public class QiuShiListFragment extends BaseListFragment {
                         try {
                             jsonArray = response.getJSONArray("items");
                             for (int i = 0; i < jsonArray.length(); i++) {
-                                Log.d(TAG, "Current json data is: " + jsonArray.getJSONObject(i));
+                                // Log.d(TAG, "Current json data is: " + jsonArray.getJSONObject(i));
                                 mQiushiItems.add(new QiushiItem(jsonArray.getJSONObject(i)));
                             }
                         } catch (Exception e) {
@@ -73,6 +77,6 @@ public class QiuShiListFragment extends BaseListFragment {
     }
 
     private String getTextUrl(int page){
-        return page==0? Constants.DAY : Constants.DAY + "?page=" + page;
+        return page==0? Constants.TEXT : Constants.TEXT + "?page=" + page;
     }
 }
