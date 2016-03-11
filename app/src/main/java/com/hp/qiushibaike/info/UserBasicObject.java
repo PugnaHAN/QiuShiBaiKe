@@ -1,10 +1,13 @@
 package com.hp.qiushibaike.info;
 
+import com.hp.qiushibaike.Constants;
 import com.hp.qiushibaike.utils.IdUtils;
 import com.hp.qiushibaike.utils.LogUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 /**
  * Created by zhangjuh on 2016/3/8.
@@ -82,5 +85,17 @@ public class UserBasicObject {
 
     public void setLogin(String login) {
         mLogin = login;
+    }
+
+    public String getIconDetailUrl(){
+        String imageUrl;
+        if(mIcon != null) {
+            imageUrl =  String.format(Constants.ARATAR_URL, String.valueOf(mUid / 10000),
+                    "medium", mIcon);
+        } else {
+            imageUrl =  null;
+        }
+        LogUtils.LOGD(TAG, "icon url: " + imageUrl);
+        return imageUrl;
     }
 }
