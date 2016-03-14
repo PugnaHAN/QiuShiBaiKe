@@ -33,7 +33,7 @@ public abstract class BaseListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         getData();
-        mAdapter = new QiushiAdapter(mQiushiItems);
+        mAdapter = new QiushiAdapter(mQiushiItems, getActivity());
     }
 
     @Override

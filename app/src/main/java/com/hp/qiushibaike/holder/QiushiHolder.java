@@ -1,14 +1,22 @@
 package com.hp.qiushibaike.holder;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.media.ImageReader;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
+import com.hp.qiushibaike.MyApplication;
 import com.hp.qiushibaike.R;
 import com.hp.qiushibaike.info.QiushiText;
 import com.hp.qiushibaike.info.UserInfo;
@@ -21,6 +29,8 @@ import com.hp.qiushibaike.utils.LogUtils;
  */
 public class QiushiHolder extends RecyclerView.ViewHolder {
     private static final String TAG = LogUtils.makeLogTag(QiushiHolder.class);
+
+    private Context mContext;
 
     private ImageView mUserProfile;
     private TextView mUserName;
@@ -35,7 +45,7 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
     private ImageView mQiushiComment;
     private ImageView mQiushiMore;
 
-    public QiushiHolder(View v){
+    public QiushiHolder(View v, Context context){
         super(v);
         mUserName = (TextView) v.findViewById(R.id.qiushi_people_name);
         mUserProfile = (ImageView) v.findViewById(R.id.qiushi_profile);
@@ -52,6 +62,8 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
         mQiushiBad = (ImageView) v.findViewById(R.id.qiushi_bad);
         mQiushiComment = (ImageView) v.findViewById(R.id.qiushi_comment);
         mQiushiMore = (ImageView) v.findViewById(R.id.qiushi_more);
+
+        mContext = context;
     }
 
     public void setUserProfile(int resourceId){
@@ -67,6 +79,25 @@ public class QiushiHolder extends RecyclerView.ViewHolder {
                     R.drawable.default_profile_male:
                     R.drawable.default_profile_female);
         }
+    }
+
+    public void setUserProfile(String imageFile){
+        // Log.d(TAG, MyApplication.getInstance().toString());
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        ImageRequest imageRequest = new ImageRequest(imageFile, new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap bitmap) {
+                mUserProfile.setImageBitmap(bitmap);
+                Log.d(TAG, "bitmap is " + bitmap);
+            }
+        }, mUserProfile.getMaxWidth(), mUserProfile.getMaxHeight(), Bitmap.Config.RGB_565,
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        mUserProfile.setImageResource(R.drawable.default_anonymous_users_avatar);
+                    }
+                });
+        requestQueue.add(imageRequest);
     }
 
     public void setUserName(String userName){

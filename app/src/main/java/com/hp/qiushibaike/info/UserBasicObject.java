@@ -1,5 +1,7 @@
 package com.hp.qiushibaike.info;
 
+import android.util.Log;
+
 import com.hp.qiushibaike.Constants;
 import com.hp.qiushibaike.utils.IdUtils;
 import com.hp.qiushibaike.utils.LogUtils;
@@ -90,12 +92,14 @@ public class UserBasicObject {
     public String getIconDetailUrl(){
         String imageUrl;
         if(mIcon != null) {
-            imageUrl =  String.format(Constants.ARATAR_URL, String.valueOf(mUid / 10000),
+            imageUrl =  String.format(Constants.ARATAR_URL,
+                    String.valueOf(mUid / 10000),
+                    String.valueOf(mUid),
                     "medium", mIcon);
         } else {
             imageUrl =  null;
         }
-        LogUtils.LOGD(TAG, "icon url: " + imageUrl);
+        Log.d(TAG, "icon url: " + imageUrl);
         return imageUrl;
     }
 }

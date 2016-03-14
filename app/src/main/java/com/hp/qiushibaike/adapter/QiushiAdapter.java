@@ -21,10 +21,13 @@ import java.util.Random;
 public class QiushiAdapter extends RecyclerView.Adapter<QiushiHolder> {
     private static final String TAG = LogUtils.makeLogTag(QiushiAdapter.class);
 
+    private Context mContext;
+
     private ArrayList<QiushiItem> mQiushiItemList;
 
-    public QiushiAdapter(ArrayList<QiushiItem> qiushiItems){
+    public QiushiAdapter(ArrayList<QiushiItem> qiushiItems, Context context){
         mQiushiItemList = qiushiItems;
+        mContext = context;
     }
 
     @Override
@@ -37,9 +40,18 @@ public class QiushiAdapter extends RecyclerView.Adapter<QiushiHolder> {
     @Override
     public void onBindViewHolder(QiushiHolder qiushiHolder, int i){
         QiushiItem qb = mQiushiItemList.get(i);
-        Random random = new Random();
-        qiushiHolder.setUserProfile(random.nextInt(10) % 2 == 1 ? R.drawable.default_profile_male :
-                R.drawable.default_profile_female);
+        // Random random = new Random();
+        // qiushiHolder.setUserProfile(random.nextInt(10) % 2 == 1 ? R.drawable.default_profile_male :
+        //          R.drawable.default_profile_female);
+        if(qb.getUserInfo() == null){
+            qiushiHolder.setUserProfile(R.drawable.default_anonymous_users_avatar);
+        } else {
+            if(qb.getUserInfo().getIconDetailUrl() == null){
+                qiushiHolder.setUserProfile(R.drawable.default_anonymous_users_avatar);
+            } else {
+                qiushiHolder.setUserProfile(qb.getUserInfo().getIconDetailUrl());
+            }
+        }
         if(qb.getUserInfo() != null) {
             qiushiHolder.setUserName(qb.getUserInfo().getLogin());
         } else {
@@ -61,6 +73,6 @@ public class QiushiAdapter extends RecyclerView.Adapter<QiushiHolder> {
         View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.fragment_single_qiushi, viewGroup, false);
 
-        return new QiushiHolder(itemView);
+        return new QiushiHolder(itemView, mContext);
     }
 }

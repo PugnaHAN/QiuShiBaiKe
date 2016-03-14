@@ -44,7 +44,7 @@ public class QiuShiListFragment extends BaseListFragment {
                 mCurrentPage++;
                 Log.d(TAG, "current page is " + mCurrentPage);
                 getQiushiItems(mCurrentPage);
-                mQiushiRecyclerView.setAdapter(new QiushiAdapter(mQiushiItems));
+                mQiushiRecyclerView.setAdapter(new QiushiAdapter(mQiushiItems, getActivity()));
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
