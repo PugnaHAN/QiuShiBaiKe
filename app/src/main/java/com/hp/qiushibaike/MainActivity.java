@@ -8,19 +8,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.hp.qiushibaike.ui.fragments.QiuShiListFragment;
+import com.hp.qiushibaike.ui.fragments.QSTextListFragment;
 import com.hp.qiushibaike.utils.LogUtils;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -96,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initFragments(){
         for(int i = 0; i < 5; i++){
-            mFragments.add(new QiuShiListFragment());
+            mFragments.add(new QSTextListFragment());
         }
     }
 }

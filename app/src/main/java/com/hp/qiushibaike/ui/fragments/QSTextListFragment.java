@@ -10,7 +10,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.hp.qiushibaike.Constants;
 import com.hp.qiushibaike.adapter.QiushiAdapter;
-import com.hp.qiushibaike.info.UserInfo;
 import com.hp.qiushibaike.item.QiushiItem;
 import com.hp.qiushibaike.utils.LogUtils;
 
@@ -22,8 +21,8 @@ import java.util.ArrayList;
 /**
  * Created by zhangjuh on 2016/2/26.
  */
-public class QiuShiListFragment extends BaseListFragment {
-    private static final String TAG = LogUtils.makeLogTag(QiuShiListFragment.class);
+public class QSTextListFragment extends BaseListFragment {
+    private static final String TAG = LogUtils.makeLogTag(QSTextListFragment.class);
 
     private int mCurrentPage = 0;
 

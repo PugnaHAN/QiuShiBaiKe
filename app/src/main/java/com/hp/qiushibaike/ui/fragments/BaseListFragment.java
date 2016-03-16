@@ -43,10 +43,25 @@ public abstract class BaseListFragment extends Fragment {
         mQiushiRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_main);
         mQiushiRecyclerView.setHasFixedSize(true);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        final LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mQiushiRecyclerView.setLayoutManager(llm);
         mQiushiRecyclerView.setAdapter(mAdapter);
+        mQiushiRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == RecyclerView.SCROLL_STATE_IDLE &&
+                        llm.findLastVisibleItemPosition() == mAdapter.getItemCount() - 1){
+                    updateData();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
